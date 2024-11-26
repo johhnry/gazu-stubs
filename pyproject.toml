@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "gazu-stubs"
+version = "0.1.0"
+description = "Stub-only package for CGWire's Gazu Python library"
+authors = ["Joseph HENRY <josephenry@protonmail.com>"]
+readme = "README.md"
+packages = [{ include = "gazu-stubs", from = "." }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+python-socketio = { extras = ["client"], version = ">=5.11.0,<6" }
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+mypy = "^1.10.1"
+ruff = "^0.5.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+format-check = "black --check ."
+lint-check = "ruff check ."
+type-check = "mypy ."
+publish = "poetry publish --build --repository wtl-gitea"
+check = ["format-check", "lint-check", "type-check"]
+
+[tool.mypy]
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_untyped_decorators = true
+disallow_untyped_defs = true
+follow_imports = "normal"
+ignore_missing_imports = true
+no_implicit_reexport = true
+show_error_codes = true
+show_error_context = true
+strict_equality = true
+strict_optional = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unused_configs = true
+warn_unused_ignores = true
+extra_checks = true
