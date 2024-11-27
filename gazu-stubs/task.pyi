@@ -3,6 +3,7 @@ from typing import Literal, TypeAlias, TypedDict
 from gazu.project import ProjectDict
 
 from .client import KitsuClient, default_client
+from .entity import EntityDict
 
 class TaskDict(TypedDict):
     name: str
@@ -82,6 +83,16 @@ class TaskTypeDict(TypedDict):
 EntityType: TypeAlias = Literal["Asset", "Shot", "Sequence", "Edit"]
 
 def get_task(task_id: str, client: KitsuClient = default_client) -> TaskDict: ...
+def get_task_by_name(
+    entity: EntityDict | str,
+    task_type: TaskTypeDict | str,
+    client: KitsuClient = default_client,
+) -> TaskDict: ...
+def get_task_by_entity(
+    entity: EntityDict | str,
+    task_type: TaskTypeDict | str,
+    client: KitsuClient = default_client,
+) -> TaskDict: ...
 def get_task_status(
     task_status_id: str, client: KitsuClient = default_client
 ) -> TaskStatusDict: ...
