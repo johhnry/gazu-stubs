@@ -1,4 +1,5 @@
 from . import (
+    client,  # noqa: F401
     events,  # noqa: F401
     person,  # noqa: F401
     project,  # noqa: F401
