@@ -17,7 +17,9 @@ class EntityDict(TypedDict):
     is_casting_standby: bool
     code: str | None
     shotgun_id: str | None
-    status: Literal["standby"] | Literal["running"] | Literal["complete"] | Literal["canceled"]
+    status: Literal["standby"] | Literal["running"] | Literal["complete"] | Literal[
+        "canceled"
+    ]
     ready_for: str | None
     created_by: str
     entities_out: list[str]
@@ -26,7 +28,6 @@ class EntityDict(TypedDict):
     created_at: str
     updated_at: str
     entities_in: list[str]
-
 
 class EntityTypeDict(TypedDict):
     id: str
@@ -38,8 +39,13 @@ class EntityTypeDict(TypedDict):
     updated_at: str
     type: Literal["EntityType"]
 
-
 def get_entity(entity_id: str, client: KitsuClient = default_client) -> EntityDict: ...
-def get_entity_by_name(entity_name: str, project: str | None = None, client: KitsuClient = default_client) -> EntityDict: ...
-def get_entity_type(entity_type_id: str, client: KitsuClient = default_client) -> EntityTypeDict: ...
-def get_entity_type_by_name(entity_type_name: str, client: KitsuClient = default_client) -> EntityTypeDict: ...
+def get_entity_by_name(
+    entity_name: str, project: str | None = None, client: KitsuClient = default_client
+) -> EntityDict: ...
+def get_entity_type(
+    entity_type_id: str, client: KitsuClient = default_client
+) -> EntityTypeDict: ...
+def get_entity_type_by_name(
+    entity_type_name: str, client: KitsuClient = default_client
+) -> EntityTypeDict: ...

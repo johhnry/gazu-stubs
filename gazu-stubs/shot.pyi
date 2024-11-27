@@ -27,12 +27,17 @@ class EpisodeDict(EntityDict):
     type: Literal["Episode"]
 
 def get_shot(shot_id: str, client: KitsuClient = default_client) -> ShotDict: ...
-def get_shot_by_name(sequence: str | SequenceDict, shot_name: str, client: KitsuClient = default_client) -> ShotDict: ...
+def get_shot_by_name(
+    sequence: str | SequenceDict, shot_name: str, client: KitsuClient = default_client
+) -> ShotDict: ...
 def get_sequence(
     sequence_id: str, client: KitsuClient = default_client
 ) -> SequenceDict: ...
 def get_sequence_by_name(
-    project: str | ProjectDict, sequence_name: str, episode: str | EpisodeDict | None = None, client: KitsuClient = default_client
+    project: str | ProjectDict,
+    sequence_name: str,
+    episode: str | EpisodeDict | None = None,
+    client: KitsuClient = default_client,
 ) -> SequenceDict: ...
 def get_episode(
     episode_id: str, client: KitsuClient = default_client
