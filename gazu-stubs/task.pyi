@@ -107,7 +107,7 @@ def get_task_status_by_name(
 ) -> TaskStatusDict | None: ...
 def get_task_type_by_name(
     task_type_name: str,
-    for_entity: EntityType | None = None,
+    for_entity: str | None = None,
     department: str | None = None,
     client: KitsuClient = default_client,
 ) -> TaskTypeDict | None: ...
