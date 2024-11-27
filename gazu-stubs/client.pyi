@@ -5,6 +5,10 @@ class KitsuClient:
 
 default_client: KitsuClient
 
+def build_path_with_params(
+    path: str,
+    params: dict[Any, Any]
+) -> str: ...
 def fetch_all(
     path: str,
     params: dict[Any, Any] | None = None,
