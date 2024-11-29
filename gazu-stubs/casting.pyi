@@ -5,7 +5,7 @@ from .entity import EntityDict
 class EntityCasting(TypedDict):
     asset_id: str
     asset_name: str
-    asset__type_name: str
+    asset_type_name: str
     ready_for: str | None
     episode_id: str
     label: str
