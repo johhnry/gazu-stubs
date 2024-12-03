@@ -1,9 +1,10 @@
-from typing import Literal, TypeAlias, TypedDict
+from typing import Literal, TypeAlias, TypedDict, NotRequired, Any
 
 from gazu.project import ProjectDict
 
 from .client import KitsuClient, default_client
 from .entity import EntityDict
+from .person import PersonDict
 
 class TaskDict(TypedDict):
     name: str
@@ -80,6 +81,34 @@ class TaskTypeDict(TypedDict):
     updated_at: str
     type: Literal["TaskType"]
 
+class CommentAttachmentDict(TypedDict):
+    id: str
+    name: str
+    size: int
+    extension: str
+
+class CommentChecklistDict(TypedDict):
+    text: str
+    checked: bool
+    frame: NotRequired[int]
+    revision: NotRequired[int]
+
+class CommentDict(TypedDict):
+    attachment_files: list[CommentAttachmentDict]
+    checklist: list[CommentChecklistDict]
+    created_at: str
+    data: dict[str, Any]
+    id: str
+    object_id: str
+    object_type: str
+    person: PersonDict
+    person_id: str
+    task_status: TaskStatusDict
+    text: str
+    links: list[str]
+    type: Literal["Comment"]
+    updated_at: str
+
 EntityType: TypeAlias = Literal["Asset", "Shot", "Sequence", "Edit"]
 
 def get_task(task_id: str, client: KitsuClient = default_client) -> TaskDict: ...
@@ -105,6 +134,9 @@ def all_task_statuses_for_project(
 def get_task_status_by_name(
     name: str, client: KitsuClient = default_client
 ) -> TaskStatusDict | None: ...
+def get_task_status_by_short_name(
+    task_status_short_name: str, client: KitsuClient = default_client
+) -> TaskStatusDict | None: ...
 def get_task_type_by_name(
     task_type_name: str,
     for_entity: str | None = None,
@@ -114,3 +146,14 @@ def get_task_type_by_name(
 def all_task_types_for_project(
     project: ProjectDict | str, client: KitsuClient = default_client
 ) -> list[TaskTypeDict]: ...
+def add_comment(
+    task: TaskDict | str,
+    task_status: TaskStatusDict | str,
+    comment: str = "",
+    person: PersonDict | str | None = None,
+    checklist: list[CommentChecklistDict] = [],
+    attachments: list[CommentAttachmentDict] = [],
+    created_at: str | None = None,
+    links=list[str] | None,
+    client: KitsuClient = default_client,
+) -> CommentDict | None: ...
