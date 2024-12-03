@@ -154,6 +154,6 @@ def add_comment(
     checklist: list[CommentChecklistDict] = [],
     attachments: list[CommentAttachmentDict] = [],
     created_at: str | None = None,
-    links=list[str] | None,
+    links: list[str] = [],
     client: KitsuClient = default_client,
 ) -> CommentDict | None: ...
