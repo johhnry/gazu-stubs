@@ -109,25 +109,38 @@ class CommentDict(TypedDict):
     type: Literal["Comment"]
     updated_at: str
 
+class PreviewDict(TypedDict):
+    created_at: str
+    duration: float
+    extension: str
+    height: int
+    id: str
+    original_name: str
+    revision: int
+    status: str
+    task_id: str
+    width: int
+
 EntityType: TypeAlias = Literal["Asset", "Shot", "Sequence", "Edit"]
 
-def get_task(task_id: str, client: KitsuClient = default_client) -> TaskDict: ...
+def get_task(task_id: str, client: KitsuClient = default_client) -> TaskDict | None: ...
 def get_task_by_name(
     entity: EntityDict | str,
     task_type: TaskTypeDict | str,
     client: KitsuClient = default_client,
-) -> TaskDict: ...
+) -> TaskDict | None: ...
 def get_task_by_entity(
     entity: EntityDict | str,
     task_type: TaskTypeDict | str,
     client: KitsuClient = default_client,
-) -> TaskDict: ...
+) -> TaskDict | None: ...
+def all_task_statuses(client: KitsuClient = default_client) -> list[TaskStatusDict]: ...
 def get_task_status(
     task_status_id: str, client: KitsuClient = default_client
-) -> TaskStatusDict: ...
+) -> TaskStatusDict | None: ...
 def get_task_type(
     task_type_id: str, client: KitsuClient = default_client
-) -> TaskTypeDict: ...
+) -> TaskTypeDict | None: ...
 def all_task_statuses_for_project(
     project: str | ProjectDict, client: KitsuClient = default_client
 ) -> list[TaskStatusDict]: ...
@@ -157,3 +170,12 @@ def add_comment(
     links: list[str] = [],
     client: KitsuClient = default_client,
 ) -> CommentDict | None: ...
+def add_preview(
+    task: TaskDict | str,
+    comment: CommentDict | str,
+    preview_file_path: str | None = None,
+    preview_file_url: str | None = None,
+    normalize_movie: bool = True,
+    revision: int | None = None,
+    client: KitsuClient = default_client,
+) -> PreviewDict | None: ...
