@@ -1,10 +1,12 @@
-from typing import Literal, TypeAlias, TypedDict, NotRequired, Any
+from typing import Any, Literal, NotRequired, TypeAlias, TypedDict
 
 from gazu.project import ProjectDict
 
 from .client import KitsuClient, default_client
 from .entity import EntityDict
 from .person import PersonDict
+
+EntityType: TypeAlias = Literal["Asset", "Shot", "Sequence", "Edit"]
 
 class TaskDict(TypedDict):
     name: str
@@ -41,7 +43,6 @@ class TaskDict(TypedDict):
     # persons: list[PersonDict]
     # project: Project
     task_status: TaskStatusDict
-    # task_type: TaskType
     # assigner: PersonDict
     # sequence: Sequence
 
@@ -71,7 +72,7 @@ class TaskTypeDict(TypedDict):
     description: str | None
     color: str
     priority: int
-    for_entity: Literal["Shot"]
+    for_entity: EntityType
     allow_timelog: bool
     archived: bool
     shotgun_id: str | None
@@ -121,9 +122,10 @@ class PreviewDict(TypedDict):
     task_id: str
     width: int
 
-EntityType: TypeAlias = Literal["Asset", "Shot", "Sequence", "Edit"]
+class FullTaskDict(TaskDict):
+    task_type: TaskTypeDict
 
-def get_task(task_id: str, client: KitsuClient = default_client) -> TaskDict | None: ...
+def get_task(task_id: str, client: KitsuClient = default_client) -> FullTaskDict: ...
 def get_task_by_name(
     entity: EntityDict | str,
     task_type: TaskTypeDict | str,
