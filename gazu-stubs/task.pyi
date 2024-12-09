@@ -94,19 +94,35 @@ class CommentChecklistDict(TypedDict):
     frame: NotRequired[int]
     revision: NotRequired[int]
 
+class CommentReplyDict(TypedDict):
+    created_at: str
+    date: str
+    department_mentions: list[str]
+    id: str
+    mentions: list[str]
+    person_id: str
+    text: str
+
 class CommentDict(TypedDict):
-    attachment_files: list[CommentAttachmentDict]
+    acknowledgements: list[str]
+    attachment_files: list[str]
     checklist: list[CommentChecklistDict]
     created_at: str
-    data: dict[str, Any]
+    data: dict[str, Any] | None
+    department_mentions: list[str]
     id: str
-    object_id: str
-    object_type: str
-    person: PersonDict
-    person_id: str
-    task_status: TaskStatusDict
-    text: str
     links: list[str]
+    mentions: list[str]
+    object_id: str
+    object_type: Literal["Task"]
+    person_id: str
+    pinned: bool | None
+    preview_file_id: str | None
+    previews: list[str]
+    replies: list[CommentReplyDict]
+    shotgun_id: str | None
+    task_status_id: str
+    text: str
     type: Literal["Comment"]
     updated_at: str
 
@@ -181,3 +197,6 @@ def add_preview(
     revision: int | None = None,
     client: KitsuClient = default_client,
 ) -> PreviewDict | None: ...
+def get_comment(
+    comment_id: str, client: KitsuClient = default_client
+) -> CommentDict: ...

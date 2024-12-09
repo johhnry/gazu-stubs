@@ -54,10 +54,22 @@ class PersonDict(TypedDict):
     type: Literal["Person"]
     fido_devices: list[str]
 
+class DepartmentDict(TypedDict):
+    archived: bool
+    color: str
+    created_at: str
+    id: str
+    name: str
+    type: Literal["Department"]
+    updated_at: str
+
 def get_person(
-    id: str, relations: bool = False, client: KitsuClient | None = default_client
+    id: str, relations: bool = False, client: KitsuClient = default_client
 ) -> PersonDict: ...
-def all_persons(client: KitsuClient | None = default_client) -> list[PersonDict]: ...
+def all_persons(client: KitsuClient = default_client) -> list[PersonDict]: ...
 def get_person_by_email(
     email: str, client: KitsuClient = default_client
 ) -> PersonDict | None: ...
+def get_department(
+    department_id: str, client: KitsuClient = default_client
+) -> DepartmentDict: ...

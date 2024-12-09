@@ -5,7 +5,7 @@ import socketio
 from .client import KitsuClient, default_client
 
 def init(
-    client: KitsuClient | None = default_client,
+    client: KitsuClient = default_client,
     ssl_verify: bool = False,
     reconnection: bool = True,
     logger: bool = False,
