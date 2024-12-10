@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{ include = "gazu-stubs", from = "." }]
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 python-socketio = { extras = ["client"], version = ">=5.8.0,<6" }
 
 [tool.poetry.group.dev.dependencies]
