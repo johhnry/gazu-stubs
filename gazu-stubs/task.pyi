@@ -150,6 +150,7 @@ def get_task_by_name(
 def get_task_by_entity(
     entity: EntityDict | str,
     task_type: TaskTypeDict | str,
+    name: str = "main",
     client: KitsuClient = default_client,
 ) -> TaskDict | None: ...
 def all_task_statuses(client: KitsuClient = default_client) -> list[TaskStatusDict]: ...
