@@ -43,22 +43,22 @@ def get_episode(
     episode_id: str, client: KitsuClient = default_client
 ) -> EpisodeDict: ...
 def get_episode_by_name(
-    project: str | ProjectDict, episode_name: str, client: KitsuClient = default_client
+    project: ProjectDict | str, episode_name: str, client: KitsuClient = default_client
 ) -> EpisodeDict: ...
 def all_shots_for_project(
-    project: ProjectDict, client: KitsuClient = default_client
+    project: ProjectDict | str, client: KitsuClient = default_client
 ) -> list[ShotDict]: ...
 def all_shots_for_episode(
-    episode: EntityDict, client: KitsuClient = default_client
+    episode: EpisodeDict | str, client: KitsuClient = default_client
 ) -> list[ShotDict]: ...
 def all_shots_for_sequence(
-    sequence: EntityDict, client: KitsuClient = default_client
+    sequence: SequenceDict | str, client: KitsuClient = default_client
 ) -> list[ShotDict]: ...
 def all_sequences_for_project(
     project: ProjectDict, client: KitsuClient = default_client
 ) -> list[SequenceDict]: ...
 def all_sequences_for_episode(
-    episode: EntityDict, client: KitsuClient = default_client
+    episode: EpisodeDict | str, client: KitsuClient = default_client
 ) -> list[SequenceDict]: ...
 def all_episodes_for_project(
     project: ProjectDict, client: KitsuClient = default_client

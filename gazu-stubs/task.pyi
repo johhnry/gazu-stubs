@@ -1,12 +1,10 @@
-from typing import Any, Literal, NotRequired, TypeAlias, TypedDict
+from typing import Any, Literal, NotRequired, TypedDict
 
 from gazu.project import ProjectDict
 
 from .client import KitsuClient, default_client
-from .entity import EntityDict
+from .entity import EntityDict, EntityTypeLiteral
 from .person import PersonDict
-
-EntityType: TypeAlias = Literal["Asset", "Shot", "Sequence", "Edit"]
 
 class TaskDict(TypedDict):
     name: str
@@ -72,7 +70,7 @@ class TaskTypeDict(TypedDict):
     description: str | None
     color: str
     priority: int
-    for_entity: EntityType
+    for_entity: EntityTypeLiteral
     allow_timelog: bool
     archived: bool
     shotgun_id: str | None

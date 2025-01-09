@@ -1,4 +1,4 @@
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypeAlias, TypedDict
 
 from .client import KitsuClient, default_client
 
@@ -41,6 +41,8 @@ class EntityTypeDict(TypedDict):
     created_at: str
     updated_at: str
     type: Literal["EntityType"]
+
+EntityTypeLiteral: TypeAlias = Literal["Asset", "Shot", "Sequence", "Edit"]
 
 def get_entity(entity_id: str, client: KitsuClient = default_client) -> EntityDict: ...
 def get_entity_by_name(

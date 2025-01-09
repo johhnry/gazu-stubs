@@ -1,10 +1,11 @@
 from typing import Any, Literal, NotRequired, TypeAlias, TypedDict
 
 from gazu.asset import AssetTypeDict
-from gazu.person import PersonDict
+from gazu.person import DepartmentDict, PersonDict
 from gazu.task import TaskStatusDict, TaskTypeDict
 
 from .client import KitsuClient, default_client
+from .entity import EntityTypeLiteral
 
 class ProjectDict(TypedDict):
     name: str
@@ -67,6 +68,23 @@ ProductionStyle: TypeAlias = Literal[
     "vr",
 ]
 
+MetadataDescriptorDataType: TypeAlias = Literal[
+    "string", "number", "list", "taglist", "boolean", "checklist"
+]
+
+class MetadataDescriptorDict(TypedDict):
+    project_id: str
+    entity_type: EntityTypeLiteral
+    name: str
+    data_type: MetadataDescriptorDataType
+    field_name: str
+    choices: list[str]
+    for_client: bool
+    id: str
+    created_at: str
+    updated_at: str
+    type: Literal["MetadataDescriptor"]
+
 ProductionType: TypeAlias = Literal["short", "featurefilm", "tvshow"]
 
 _ModelList = list[str] | list[dict[str, Any]]
@@ -104,3 +122,25 @@ def add_task_type(
     priority: int | None,
     client: KitsuClient = default_client,
 ) -> ProjectDict: ...
+def add_metadata_descriptor(
+    project: ProjectDict | str,
+    name: str,
+    entity_type: EntityTypeLiteral,
+    data_type: MetadataDescriptorDataType = "string",
+    choices: list[str] = [],
+    for_client: bool = False,
+    departments: list[DepartmentDict | str] = [],
+    client: KitsuClient = default_client,
+) -> MetadataDescriptorDict: ...
+def get_metadata_descriptor_by_field_name(
+    project: ProjectDict | str, field_name: str, client: KitsuClient = default_client
+) -> MetadataDescriptorDict | None: ...
+def all_metadata_descriptors(
+    project: ProjectDict | str, client: KitsuClient = default_client
+) -> list[MetadataDescriptorDict]: ...
+def remove_metadata_descriptor(
+    project: ProjectDict | str,
+    metadata_descriptor_id: MetadataDescriptorDict | str,
+    force: bool = False,
+    client: KitsuClient = default_client,
+) -> None: ...
