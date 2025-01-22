@@ -1,8 +1,8 @@
-from typing import Literal, TypedDict
+from typing import Literal, Sequence, TypedDict
 
 from .client import KitsuClient, default_client
 
-_PersonContract = Literal[
+PersonContract = Literal[
     "open-ended",
     "fixed-term",
     "short-term",
@@ -11,14 +11,14 @@ _PersonContract = Literal[
     "internship",
 ]
 
-_PersonRole = Literal["admin", "user", "supervisor", "manager"]
+PersonRole = Literal["admin", "user", "supervisor", "manager"]
 
 class PersonDict(TypedDict):
     first_name: str
     last_name: str
     email: str
     phone: str | None
-    contract_type: _PersonContract
+    contract_type: PersonContract
     active: bool
     archived: bool
     last_presence: str | None
@@ -33,7 +33,7 @@ class PersonDict(TypedDict):
     timezone: str
     locale: str
     data: None
-    role: _PersonRole
+    role: PersonRole
     has_avatar: bool
     notifications_enabled: bool
     notifications_slack_enabled: bool
@@ -70,6 +70,23 @@ def all_persons(client: KitsuClient = default_client) -> list[PersonDict]: ...
 def get_person_by_email(
     email: str, client: KitsuClient = default_client
 ) -> PersonDict | None: ...
+def all_departments(client: KitsuClient = default_client) -> list[DepartmentDict]: ...
 def get_department(
     department_id: str, client: KitsuClient = default_client
 ) -> DepartmentDict: ...
+def new_person(
+    first_name: str,
+    last_name: str,
+    email: str,
+    phone: str = "",
+    role: PersonRole = "user",
+    desktop_login: str = "",
+    departments: Sequence[DepartmentDict | str] = [],
+    password: str | None = None,
+    active: bool = True,
+    contract_type: PersonContract = "open-ended",
+    client: KitsuClient = default_client,
+) -> PersonDict: ...
+def remove_person(
+    person: PersonDict | str, force: bool = False, client: KitsuClient = default_client
+) -> None: ...

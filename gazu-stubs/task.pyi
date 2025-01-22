@@ -199,3 +199,11 @@ def add_preview(
 def get_comment(
     comment_id: str, client: KitsuClient = default_client
 ) -> CommentDict: ...
+def assign_task(
+    task: TaskDict | str, person: PersonDict | str, client: KitsuClient = default_client
+) -> TaskDict: ...
+def start_task(
+    task: TaskDict | str,
+    started_task_status: TaskStatusDict | str | None = None,
+    client: KitsuClient = default_client,
+) -> CommentDict: ...
