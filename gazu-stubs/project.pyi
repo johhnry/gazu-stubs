@@ -50,6 +50,7 @@ class ProjectDictPartial(TypedDict):
     ratio: NotRequired[str]
     resolution: NotRequired[str]
     homepage: NotRequired[Literal["shots", "assets"]]
+    is_set_preview_automated: NotRequired[bool]
 
 ProductionStyle: TypeAlias = Literal[
     "2d",
