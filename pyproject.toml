@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gazu-stubs"
-version = "0.1.0"
+version = "0.1.1"
 description = "Stub-only package for CGWire's Gazu Python library"
 authors = ["Joseph HENRY <josephenry@protonmail.com>"]
 readme = "README.md"
