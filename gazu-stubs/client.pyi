@@ -21,3 +21,14 @@ def fetch_first(
 def fetch_one(
     model_name: str, id: str, client: KitsuClient = default_client
 ) -> dict[Any, Any] | None: ...
+def create(
+    model_name: str, data: dict[str, Any], client: KitsuClient = default_client
+) -> dict[Any, Any] | None: ...
+def update(
+    model_name: str, id: str, data: dict[str, Any], client: KitsuClient = default_client
+) -> dict[Any, Any] | None: ...
+def delete(
+    path: str,
+    params: dict[str, Any] | None = None,
+    client: KitsuClient = default_client,
+) -> dict[Any, Any] | None: ...
