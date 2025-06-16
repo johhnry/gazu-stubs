@@ -170,6 +170,12 @@ def get_task_status(
 def get_task_type(
     task_type_id: str, client: KitsuClient = default_client
 ) -> TaskTypeDict | None: ...
+def new_task_type(
+    name: str,
+    color: str = "#000000",
+    for_entity: str = "Asset",
+    client: KitsuClient = default_client,
+) -> TaskTypeDict: ...
 def all_task_statuses_for_project(
     project: str | ProjectDict, client: KitsuClient = default_client
 ) -> list[TaskStatusDict]: ...
@@ -208,6 +214,11 @@ def add_preview(
     revision: int | None = None,
     client: KitsuClient = default_client,
 ) -> PreviewDict | None: ...
+def set_main_preview(
+    preview_file: str | PreviewDict,
+    frame_number: int | None = None,
+    client: KitsuClient = default_client,
+) -> None: ...
 def get_comment(
     comment_id: str, client: KitsuClient = default_client
 ) -> CommentDict: ...
