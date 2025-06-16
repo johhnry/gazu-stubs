@@ -28,6 +28,15 @@ def all_asset_types_for_project(
 def get_asset_type_by_name(
     name: str, client: KitsuClient = default_client
 ) -> AssetTypeDict | None: ...
+def new_asset_type(
+    name: str, client: KitsuClient = default_client
+) -> AssetTypeDict: ...
+def update_type(
+    asset_type: AssetTypeDict, client: KitsuClient = default_client
+) -> AssetTypeDict: ...
+def remove_asset_type(
+    asset_type: str | AssetTypeDict, client: KitsuClient = default_client
+) -> None: ...
 def get_asset_by_name(
     project: ProjectDict | str,
     name: str,
