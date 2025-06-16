@@ -145,6 +145,18 @@ def get_task_by_name(
     task_type: TaskTypeDict | str,
     client: KitsuClient = default_client,
 ) -> TaskDict | None: ...
+def new_task(
+    entity: str | EntityDict,
+    task_type: str | TaskTypeDict,
+    name: str = "main",
+    task_status: TaskStatusDict | None = None,
+    assigner: str | PersonDict | None = None,
+    client: KitsuClient = default_client,
+) -> TaskDict: ...
+def update_task(task: TaskDict, client: KitsuClient = default_client) -> TaskDict: ...
+def update_task_data(
+    task: TaskDict, data: dict[str, Any] = {}, client: KitsuClient = default_client
+) -> TaskDict: ...
 def get_task_by_entity(
     entity: EntityDict | str,
     task_type: TaskTypeDict | str,
