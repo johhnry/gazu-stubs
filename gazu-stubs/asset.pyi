@@ -1,7 +1,7 @@
 from typing import Any, Literal, TypedDict
 
 from gazu.project import ProjectDict
-from gazu.shot import EpisodeDict
+from gazu.shot import EpisodeDict, ShotDict
 
 from .client import KitsuClient, default_client
 from .entity import EntityDict
@@ -37,6 +37,18 @@ def update_type(
 def remove_asset_type(
     asset_type: str | AssetTypeDict, client: KitsuClient = default_client
 ) -> None: ...
+def all_assets_for_open_projects_project(
+    client: KitsuClient = default_client,
+) -> list[AssetDict]: ...
+def all_assets_for_project(
+    project: ProjectDict | str, client: KitsuClient = default_client
+) -> list[AssetDict]: ...
+def all_assets_for_episode(
+    episode: str | EpisodeDict, client: KitsuClient = default_client
+) -> list[AssetDict]: ...
+def all_assets_for_shot(
+    shot: str | ShotDict, client: KitsuClient = default_client
+) -> list[AssetDict]: ...
 def get_asset_by_name(
     project: ProjectDict | str,
     name: str,
