@@ -145,6 +145,18 @@ def get_task_by_name(
     task_type: TaskTypeDict | str,
     client: KitsuClient = default_client,
 ) -> TaskDict | None: ...
+def new_task(
+    entity: str | EntityDict,
+    task_type: str | TaskTypeDict,
+    name: str = "main",
+    task_status: TaskStatusDict | None = None,
+    assigner: str | PersonDict | None = None,
+    client: KitsuClient = default_client,
+) -> TaskDict: ...
+def update_task(task: TaskDict, client: KitsuClient = default_client) -> TaskDict: ...
+def update_task_data(
+    task: TaskDict, data: dict[str, Any] = {}, client: KitsuClient = default_client
+) -> TaskDict: ...
 def get_task_by_entity(
     entity: EntityDict | str,
     task_type: TaskTypeDict | str,
@@ -152,12 +164,21 @@ def get_task_by_entity(
     client: KitsuClient = default_client,
 ) -> TaskDict | None: ...
 def all_task_statuses(client: KitsuClient = default_client) -> list[TaskStatusDict]: ...
+def new_task_status(
+    name: str, short_name: str, color: str, client: KitsuClient = default_client
+) -> TaskStatusDict: ...
 def get_task_status(
     task_status_id: str, client: KitsuClient = default_client
 ) -> TaskStatusDict | None: ...
 def get_task_type(
     task_type_id: str, client: KitsuClient = default_client
 ) -> TaskTypeDict | None: ...
+def new_task_type(
+    name: str,
+    color: str = "#000000",
+    for_entity: str = "Asset",
+    client: KitsuClient = default_client,
+) -> TaskTypeDict: ...
 def all_task_statuses_for_project(
     project: str | ProjectDict, client: KitsuClient = default_client
 ) -> list[TaskStatusDict]: ...
@@ -196,6 +217,11 @@ def add_preview(
     revision: int | None = None,
     client: KitsuClient = default_client,
 ) -> PreviewDict | None: ...
+def set_main_preview(
+    preview_file: str | PreviewDict,
+    frame_number: int | None = None,
+    client: KitsuClient = default_client,
+) -> None: ...
 def get_comment(
     comment_id: str, client: KitsuClient = default_client
 ) -> CommentDict: ...
