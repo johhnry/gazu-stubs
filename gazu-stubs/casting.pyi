@@ -4,13 +4,12 @@ from gazu.project import ProjectDict
 
 from gazu.shot import EpisodeDict, SequenceDict, ShotDict
 from .client import KitsuClient, default_client
-from .entity import EntityDict
 
-class PartialEntityCasting(TypedDict):
+class CastingDictPartial(TypedDict):
     asset_id: str
     nb_occurences: int
 
-class EntityCasting(PartialEntityCasting):
+class CastingDict(CastingDictPartial):
     asset_name: str
     asset_type_name: str
     ready_for: str | None
@@ -20,38 +19,38 @@ class EntityCasting(PartialEntityCasting):
     project_id: str
 
 def get_shot_casting(
-    shot: EntityDict, client: KitsuClient = default_client
-) -> list[EntityCasting]: ...
+    shot: ShotDict, client: KitsuClient = default_client
+) -> list[CastingDict]: ...
 def get_asset_casting(
-    asset: EntityDict, client: KitsuClient = default_client
-) -> list[EntityCasting]: ...
+    asset: AssetDict, client: KitsuClient = default_client
+) -> list[CastingDict]: ...
 def get_sequence_casting(
-    sequence: EntityDict, client: KitsuClient = default_client
-) -> list[EntityCasting]: ...
+    sequence: SequenceDict, client: KitsuClient = default_client
+) -> dict[str, list[CastingDict]]: ...
 def get_episode_casting(
-    episode: EntityDict, client: KitsuClient = default_client
-) -> list[EntityCasting]: ...
+    episode: EpisodeDict, client: KitsuClient = default_client
+) -> list[CastingDict]: ...
 def update_shot_casting(
     project: str | ProjectDict,
     shot: str | ShotDict,
-    casting: list[PartialEntityCasting],
+    casting: list[CastingDictPartial],
     client: KitsuClient = default_client,
-) -> list[EntityCasting]: ...
+) -> list[CastingDict]: ...
 def update_asset_casting(
     project: str | ProjectDict,
     asset: str | AssetDict,
-    casting: list[PartialEntityCasting],
+    casting: list[CastingDictPartial],
     client: KitsuClient = default_client,
-) -> list[EntityCasting]: ...
+) -> list[CastingDict]: ...
 def update_sequence_casting(
     project: str | ProjectDict,
     asset: str | SequenceDict,
-    casting: list[PartialEntityCasting],
+    casting: list[CastingDictPartial],
     client: KitsuClient = default_client,
-) -> list[EntityCasting]: ...
+) -> list[CastingDict]: ...
 def update_episode_casting(
     project: str | ProjectDict,
     asset: str | EpisodeDict,
-    casting: list[PartialEntityCasting],
+    casting: list[CastingDictPartial],
     client: KitsuClient = default_client,
-) -> list[EntityCasting]: ...
+) -> list[CastingDict]: ...
