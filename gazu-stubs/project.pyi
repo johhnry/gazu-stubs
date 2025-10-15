@@ -7,50 +7,50 @@ from gazu.task import TaskStatusDict, TaskTypeDict
 from .client import KitsuClient, default_client
 from .entity import EntityTypeLiteral
 
+class ProjectDictPartial(TypedDict):
+    fps: NotRequired[str]
+    homepage: NotRequired[Literal["shots", "assets"]]
+    id: str
+    is_set_preview_automated: NotRequired[bool]
+    ratio: NotRequired[str]
+    resolution: NotRequired[str]
+
 class ProjectDict(TypedDict):
-    name: str
+    asset_types: list[str]
     code: str | None
-    description: str | None
-    shotgun_id: str | None
-    file_tree: str | None
+    created_at: str
     data: None
-    has_avatar: bool
-    fps: str
-    ratio: str
-    resolution: str
-    production_type: Literal["shots"]
-    production_style: Literal["vfx"]
-    start_date: str
+    default_preview_background_file_id: str | None
+    description: str | None
     end_date: str
-    man_days: None
-    nb_episodes: int
     episode_span: int
-    max_retakes: int
+    file_tree: str | None
+    fps: str
+    has_avatar: bool
+    homepage: Literal["shots", "assets"]
+    id: str
     is_clients_isolated: bool
     is_preview_download_allowed: bool
     is_set_preview_automated: bool
-    homepage: Literal["shots", "assets"]
+    man_days: None
+    max_retakes: int
+    name: str
+    nb_episodes: int
+    preview_background_files: list[str]
+    production_style: Literal["vfx"]
+    production_type: Literal["shots"]
     project_status_id: str
-    default_preview_background_file_id: str | None
-    team: list[str]
-    asset_types: list[str]
+    project_status_name: Literal["Open"]
+    ratio: str
+    resolution: str
+    shotgun_id: str | None
+    start_date: str
+    status_automations: list[str]
     task_statuses: list[str]
     task_types: list[str]
-    status_automations: list[str]
-    preview_background_files: list[str]
-    id: str
-    created_at: str
-    updated_at: str
+    team: list[str]
     type: Literal["Project"]
-    project_status_name: Literal["Open"]
-
-class ProjectDictPartial(TypedDict):
-    id: str
-    fps: NotRequired[str]
-    ratio: NotRequired[str]
-    resolution: NotRequired[str]
-    homepage: NotRequired[Literal["shots", "assets"]]
-    is_set_preview_automated: NotRequired[bool]
+    updated_at: str
 
 ProductionStyle: TypeAlias = Literal[
     "2d",
@@ -145,3 +145,5 @@ def remove_metadata_descriptor(
     force: bool = False,
     client: KitsuClient = default_client,
 ) -> None: ...
+def all_projects(client: KitsuClient = default_client) -> list[ProjectDict]: ...
+def all_open_projects(client: KitsuClient = default_client) -> list[ProjectDict]: ...
