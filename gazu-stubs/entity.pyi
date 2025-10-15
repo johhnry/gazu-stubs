@@ -17,12 +17,7 @@ class EntityDict(TypedDict):
     is_casting_standby: bool
     code: str | None
     shotgun_id: str | None
-    status: (
-        Literal["standby"]
-        | Literal["running"]
-        | Literal["complete"]
-        | Literal["canceled"]
-    )
+    status: Literal["standby", "running", "complete", "canceled"]
     ready_for: str | None
     created_by: str
     entities_out: list[str]
