@@ -1,4 +1,4 @@
-from typing import Any, Literal
+from typing import Any, Literal, NotRequired
 
 from .client import KitsuClient, default_client
 from .entity import EntityDict
@@ -10,7 +10,6 @@ class ShotDict(EntityDict):
     fps: float | None
     frame_in: int | None
     frame_out: int | None
-    nb_frames: int
     project_name: str
     sequence_id: str
     sequence_name: str
@@ -18,8 +17,9 @@ class ShotDict(EntityDict):
     type: Literal["Shot"]
 
 class SequenceDict(EntityDict):
-    nb_frames: int | None
     project_name: str
+    episode_id: NotRequired[str]
+    episode_name: NotRequired[str]
     type: Literal["Sequence"]
 
 class EpisodeDict(EntityDict):
