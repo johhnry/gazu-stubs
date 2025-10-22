@@ -5,16 +5,16 @@ from .entity import EntityDict
 from .project import ProjectDict
 
 class ShotDict(EntityDict):
-    episode_id: str | None
-    episode_name: str
     fps: float | None
     frame_in: int | None
     frame_out: int | None
     project_name: str
     sequence_id: str
     sequence_name: str
-    # tasks: ?
     type: Literal["Shot"]
+
+    episode_id: NotRequired[str | None]
+    episode_name: NotRequired[str]
 
 class SequenceDict(EntityDict):
     project_name: str
