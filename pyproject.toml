@@ -26,6 +26,9 @@ type-check = "mypy ."
 publish = "poetry publish --build --repository wtl-gitea"
 check = ["format-check", "lint-check", "type-check"]
 
+[tool.ruff.lint]
+extend-select = ["I"]
+
 [tool.mypy]
 check_untyped_defs = true
 disallow_any_generics = true

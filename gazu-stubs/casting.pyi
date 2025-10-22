@@ -1,8 +1,9 @@
 from typing import TypedDict
+
 from gazu.asset import AssetDict
 from gazu.project import ProjectDict
-
 from gazu.shot import EpisodeDict, SequenceDict, ShotDict
+
 from .client import KitsuClient, default_client
 
 class CastingDictPartial(TypedDict):
