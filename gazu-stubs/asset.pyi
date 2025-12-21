@@ -24,7 +24,7 @@ class AssetTypeDict(TypedDict):
 
 def all_asset_types_for_project(
     project: ProjectDict | str, client: KitsuClient = default_client
-) -> AssetTypeDict: ...
+) -> list[AssetTypeDict]: ...
 def get_asset_type_by_name(
     name: str, client: KitsuClient = default_client
 ) -> AssetTypeDict | None: ...
@@ -37,7 +37,7 @@ def update_type(
 def remove_asset_type(
     asset_type: str | AssetTypeDict, client: KitsuClient = default_client
 ) -> None: ...
-def all_assets_for_open_projects_project(
+def all_assets_for_open_projects(
     client: KitsuClient = default_client,
 ) -> list[AssetDict]: ...
 def all_assets_for_project(
@@ -54,7 +54,7 @@ def get_asset_by_name(
     name: str,
     asset_type: str | AssetTypeDict,
     client: KitsuClient = default_client,
-) -> AssetDict: ...
+) -> AssetDict | None: ...
 def get_asset(asset_id: str, client: KitsuClient = default_client) -> AssetDict: ...
 def new_asset(
     project: ProjectDict | str,
@@ -70,8 +70,8 @@ def update_asset(
     asset: AssetDict, client: KitsuClient = default_client
 ) -> AssetDict: ...
 def update_asset_data(
-    asset: AssetDict, data: dict[str, Any] = {}, client: KitsuClient = default_client
+    asset: AssetDict | str, data: dict[str, Any] = {}, client: KitsuClient = default_client
 ) -> AssetDict: ...
 def remove_asset(
-    asset: str | AssetDict, client: KitsuClient = default_client
+    asset: str | AssetDict, force: bool = False, client: KitsuClient = default_client
 ) -> None: ...
