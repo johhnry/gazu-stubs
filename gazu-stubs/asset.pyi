@@ -70,7 +70,9 @@ def update_asset(
     asset: AssetDict, client: KitsuClient = default_client
 ) -> AssetDict: ...
 def update_asset_data(
-    asset: AssetDict | str, data: dict[str, Any] = {}, client: KitsuClient = default_client
+    asset: AssetDict | str,
+    data: dict[str, Any] = {},
+    client: KitsuClient = default_client,
 ) -> AssetDict: ...
 def remove_asset(
     asset: str | AssetDict, force: bool = False, client: KitsuClient = default_client
