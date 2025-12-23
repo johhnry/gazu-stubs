@@ -8,9 +8,9 @@ packages = [{ include = "gazu-stubs", from = "." }]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-python-socketio = { extras = ["client"], version = ">=5.8.0,<6" }
 
 [tool.poetry.group.dev.dependencies]
+python-socketio = { extras = ["client"], version = ">=5.8.0,<6" }
 black = "^24.4.2"
 mypy = "^1.10.1"
 ruff = "^0.5.4"
