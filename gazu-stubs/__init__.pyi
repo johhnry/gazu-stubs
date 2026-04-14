@@ -6,6 +6,7 @@ from . import (
     entity,  # noqa: F401
     events,  # noqa: F401
     exception,  # noqa: F401
+    files,  # noqa: F401
     helpers,  # noqa: F401
     person,  # noqa: F401
     project,  # noqa: F401
