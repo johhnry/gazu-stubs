@@ -1,4 +1,7 @@
-from typing import Callable, TypedDict
+from collections.abc import Callable
+from typing import TypedDict
+
+from gazu.task import TaskDict
 
 from .client import KitsuClient, default_client
 
@@ -11,3 +14,6 @@ def download_preview_file_cover(
     progress_callback: Callable[[int, int], object] | None = None,
     client: KitsuClient = default_client,
 ) -> None: ...
+def get_all_preview_files_for_task(
+    task: TaskDict | str, client: KitsuClient = default_client
+) -> list[TaskDict]: ...
