@@ -9,7 +9,7 @@ requires-python = ">=3.9"
 dev = [
   "python-socketio[client]>=5.8.0,<6",
   "black>=24.4.2,<25",
-  "mypy>=1.10.1,<2",
+  "basedpyright>=1.31.0,<2",
   "ruff>=0.5.4,<0.6",
 ]
 
@@ -23,23 +23,5 @@ packages = ["gazu-stubs"]
 [tool.ruff.lint]
 extend-select = ["I"]
 
-[tool.mypy]
-check_untyped_defs = true
-disallow_any_generics = true
-disallow_incomplete_defs = true
-disallow_subclassing_any = true
-disallow_untyped_calls = true
-disallow_untyped_decorators = true
-disallow_untyped_defs = true
-follow_imports = "normal"
-ignore_missing_imports = true
-no_implicit_reexport = true
-show_error_codes = true
-show_error_context = true
-strict_equality = true
-strict_optional = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unused_configs = true
-warn_unused_ignores = true
-extra_checks = true
+[tool.basedpyright]
+reportUnusedImport = false

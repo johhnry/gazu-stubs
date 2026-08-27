@@ -25,4 +25,4 @@ jobs:
         run: uv run ruff check .
 
       - name: Type checking
-        run: uv run mypy .
+        run: uv run basedpyright

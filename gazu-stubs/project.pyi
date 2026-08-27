@@ -93,6 +93,11 @@ _ModelList = list[str] | list[dict[str, Any]]
 def get_project(
     project_id: str, client: KitsuClient = default_client
 ) -> ProjectDict: ...
+def remove_project(
+    project: str | ProjectDict,
+    force: bool = False,
+    client: KitsuClient = default_client,
+) -> str: ...
 def get_project_by_name(
     project_name: str, client: KitsuClient = default_client
 ) -> ProjectDict | None: ...

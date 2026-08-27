@@ -40,5 +40,5 @@ Install the locked development environment and run the checks with:
 ❯ uv sync --dev
 ❯ uv run black --check .
 ❯ uv run ruff check .
-❯ uv run mypy .
+❯ uv run basedpyright
 ```
