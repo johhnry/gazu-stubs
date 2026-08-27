@@ -26,11 +26,19 @@ Currently the project is not hosted on PyPi so you can install it directly from 
 ❯ pip install git+https://github.com/johhnry/gazu-stubs.git
 ```
 
-Or with Poetry/uv, add this to your dev dependencies:
+Or with uv, add this to your development dependencies:
 
 ```shell
-❯ poetry add -G dev git+https://github.com/johhnry/gazu-stubs.git
-
-# Or with uv
 ❯ uv add --dev git+https://github.com/johhnry/gazu-stubs.git
+```
+
+## Development
+
+Install the locked development environment and run the checks with:
+
+```shell
+❯ uv sync --dev
+❯ uv run black --check .
+❯ uv run ruff check .
+❯ uv run mypy .
 ```
